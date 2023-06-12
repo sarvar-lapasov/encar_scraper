@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Car Data</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="carWrapper"></div>
+
+  <script>
+    async function fetchCars() {
+      const response = await fetch('http://localhost:3000/api/cars');
+      const cars = await response.json();
+      displayCars(cars);
+    }
+
+    function displayCars(cars) {
+      const carList = document.querySelector('.carWrapper');
+      console.log(cars);
+      cars.forEach(car => {
+        const carElement = document.createElement('h6');
+        carElement.innerText = car.title;
+        carList.appendChild(carElement);
+        const carImage = document.createElement('img');
+        carImage.src = null;
+        carList.appendChild(carImage);
+        const carpElement = document.createElement('p');
+        carpElement.innerText = car.price;
+        carList.appendChild(carpElement);
+        // console.log(car.image);
+        console.log(car);
+      });
+    }
+
+    fetchCars();
+  </script>
+</body>
+
+</html>
